@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const emailSchema = new mongoose.Schema({
   email: {
