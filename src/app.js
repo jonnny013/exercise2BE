@@ -5,6 +5,8 @@ import config from './utils/config.js'
 import mongoose from 'mongoose'
 import middleware from './utils/middleware.js'
 import morgan from 'morgan'
+import emailRouter from './controllers/emails.js'
+
 
 mongoose.set('strictQuery', false)
 
@@ -34,7 +36,7 @@ app.use(express.static('dist'))
 app.set('trust proxy', true)
 
 app.use(morgan('tiny'))
-
+app.use('/api/email', emailRouter)
 
 app.use(middleware.unknownEndpoint)
 

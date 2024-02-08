@@ -17,6 +17,10 @@ const emailSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 2000,
   },
+  dateSent: {
+    type: Date,
+    required: true
+  }
 })
 
 
