@@ -1,10 +1,10 @@
 import express from 'express'
-import 'express-async-errors'
 import cors from 'cors'
-import logger from './utils/logger'
-import config from './utils/config'
+import logger from './utils/logger.js'
+import config from './utils/config.js'
 import mongoose from 'mongoose'
-import middleware from './utils/middleware'
+import middleware from './utils/middleware.js'
+import morgan from 'morgan'
 
 mongoose.set('strictQuery', false)
 
@@ -30,13 +30,12 @@ if (typeof config.MONGODB_URI === 'string') {
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.use(express.static('public'))
 app.use(express.static('dist'))
 app.set('trust proxy', true)
-app.use(middleware.requestLogger)
+
+app.use(morgan('tiny'))
 
 
 app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
 
 export default app
